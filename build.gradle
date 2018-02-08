@@ -28,10 +28,18 @@ repositories {
 
 
 dependencies {
+
+	//Spring
+	compile 'org.springframework.boot:spring-boot-starter-web'
 	compile 'org.springframework.boot:spring-boot-starter-data-jpa'
-	compile 'org.liquibase:liquibase-core'
-	compile 'org.springframework.boot:spring-boot-starter-security'
 	compile 'org.codehaus.groovy:groovy'
+
+	//PostgresDB
+//	compile 'org.liquibase:liquibase-core'
+
+	//Swagger
+	compile 'io.springfox:springfox-swagger2:2.6.1'
+	compile 'io.springfox:springfox-swagger-ui:2.6.1'
 
 	// Spock
 	testCompile 'org.springframework.boot:spring-boot-starter-test'
@@ -42,4 +50,7 @@ dependencies {
 	//lombok
 	apt 'org.projectlombok:lombok:1.16.20'
 	compileOnly 'org.projectlombok:lombok:1.16.20'
+
+	//slf4j
+	testCompile 'org.slf4j:slf4j-simple:1.6.1'
 }

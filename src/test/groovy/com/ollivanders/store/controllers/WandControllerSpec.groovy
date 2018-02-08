@@ -1,7 +1,9 @@
 package com.ollivanders.store.controllers
 
+import com.ollivanders.store.models.WandModel
 import com.ollivanders.store.models.WandRequest
-import com.ollivanders.store.services.WandService
+import com.ollivanders.store.services.WandServiceImpl
+import com.ollivanders.store.util.RequestMapper
 import spock.lang.Specification
 
 /**
@@ -10,24 +12,29 @@ import spock.lang.Specification
 class WandControllerSpec extends Specification{
 
     WandController wandController
-    WandService wandService
+    WandServiceImpl mockService
+    RequestMapper mockMapper
 
     void setup(){
-        wandService = Mock(WandService)
+        mockService = Mock(WandServiceImpl)
+        mockMapper = Mock(RequestMapper)
 
-
-        wandController = new WandController(service: wandService)
+        wandController = new WandController(
+                service: mockService,
+                mapper:  mockMapper
+        )
     }
 
     void "create success"(){
         given:
-        WandRequest mockRequest = Mock(WandRequest)
+        WandRequest input = Mock(WandRequest)
+        WandModel mockWand = Mock(WandModel)
 
         when:
-        wandController.create(mockRequest)
+        wandController.create(input)
 
         then:
-        true
-
+        1 * mockMapper.toWand(input) >> mockWand
+        1 * mockService.create(mockWand)
     }
 }
