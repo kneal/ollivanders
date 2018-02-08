@@ -1,0 +1,14 @@
+version: "2"
+services:
+  api:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: ollivanders-store:local
+    labels:
+      - "com.hp.ollivanders.api"
+    environment:
+      - SPRING_SOMETHING_GOES_HERE
+    ports:
+      - "8080:8080"
+    tty: true
